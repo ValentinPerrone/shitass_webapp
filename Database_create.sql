@@ -20,12 +20,17 @@ CREATE TABLE notes (
     folder_id INT UNSIGNED NULL,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    is_pinned BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
     FOREIGN KEY (user_id) REFERENCES users(id)
       ON DELETE CASCADE,
     FOREIGN KEY (folder_id) REFERENCES folders(id)
       ON DELETE SET NULL
+);
+
+CREATE TABLE kanban (
+    note_id INT NOT NULL,
+    uncategorized BOOLEAN DEFAULT TRUE,
+    todo BOOLEAN DEFAULT FALSE,
+    doing BOOLEAN DEFAULT FALSE,
+    done BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (note_id) REFERENCES notes(id)
 );
