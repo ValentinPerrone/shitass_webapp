@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute
     if ($stmt->execute()) {
         echo "User registered successfully.";
-        header("Location: ../notes.html");
+        header("Location: ../login.html");
     } else {
         echo "Error: " . $stmt->error;
     }
